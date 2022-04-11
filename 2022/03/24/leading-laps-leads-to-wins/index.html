@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.95.0" />
+
+
+<title>Does leading the most laps lead to wins? - Sam Knoll NASCAR Blog</title>
+<meta property="og:title" content="Does leading the most laps lead to wins? - Sam Knoll NASCAR Blog">
+
+
+  <link href='http://sknoll3.github.io/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">9 min read</span>
+    
+
+    <h1 class="article-title">Does leading the most laps lead to wins?</h1>
+
+    
+    <span class="article-date">2022-03-24</span>
+    
+
+    <div class="article-content">
+      
+
+
+<p>In NASCAR the line of weather or no you win a race is one that is very small. There have been multiple cases of when a drive could lead every stage of the race and still end up losing because of a flat tire or a caution that takes them out of the race. It might cause just the little bit of damage that ends their night.</p>
+<p>So I was wondering does leading the most laps in a season really lead to the most wins?</p>
+<p>When looking for the answer to this question I stumbled on to the season of Denny Hamlin which turned out to be one of his best as he finished second in points to Kyle Larson. As you are about to see Hamlin really should have maybe won a few more races and even won the championship but couldn’t walk away with it.</p>
+<p>Last season in NASCAR it saw Kyle Larson dominate the sport from the beginning of the year until the end. Naturally he did lead the most laps and this led to ten wins on the season ultimately the season championship. Someone interesting to look at though is Denny Hamlin. Hamlin last season had one of his best seasons stats wise as as he was able to lead the second most laps on the season. You would think that he had to be right there along side Larson but instead Hamlin only won two races last season.</p>
+<p>So naturally you think man what went wrong with Hamiln he should have won more races and this is just what NASCAR margin of error is so high and Hamlin was in the wrong side of that error a lot of the time last season. Hamlin should have won at least two or three more races just take a look at Martin Truex Jr. Truex last season lead on 9.5% of the laps he raced last season and still won two more races than Hamlin.</p>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
+## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
+## ✓ readr   2.1.1     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre><code>## 
+## Attaching package: &#39;scales&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor</code></pre>
+<pre><code>## Rows: 68 Columns: 19
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (1): Driver
+## dbl (18): WINS, AS, AMR, AF, AP, PD, GP, GPD, QP, %QP, #FL, LTOP15, %LTOP15,...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div id="umksavozin" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#umksavozin .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: none;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#umksavozin .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#umksavozin .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#umksavozin .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#umksavozin .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#umksavozin .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#umksavozin .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#umksavozin .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#umksavozin .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#umksavozin .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#umksavozin .gt_column_spanner {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#umksavozin .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#umksavozin .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#umksavozin .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#umksavozin .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#umksavozin .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#umksavozin .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#umksavozin .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#umksavozin .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#umksavozin .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#umksavozin .gt_first_summary_row {
+  border-top-style: none;
+  border-top-color: #D3D3D3;
+}
+
+#umksavozin .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#umksavozin .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#umksavozin .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#umksavozin .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: none;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#umksavozin .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#umksavozin .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#umksavozin .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#umksavozin .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#umksavozin .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#umksavozin .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#umksavozin .gt_left {
+  text-align: left;
+}
+
+#umksavozin .gt_center {
+  text-align: center;
+}
+
+#umksavozin .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#umksavozin .gt_font_normal {
+  font-weight: normal;
+}
+
+#umksavozin .gt_font_bold {
+  font-weight: bold;
+}
+
+#umksavozin .gt_font_italic {
+  font-style: italic;
+}
+
+#umksavozin .gt_super {
+  font-size: 65%;
+}
+
+#umksavozin .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#umksavozin .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#umksavozin .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#umksavozin .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#umksavozin .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style="color: #000000; text-align: left; font-weight: bold;">Denny Hamiln's 2021 season was disapointing to say the least.</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="color: #000000; text-align: left;">Hamiln was second in Laps Lead but only won two races compared to other drivers.</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;">Driver</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;">Wins</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;">Laps Lead</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;">Laps Lead PCT</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;">Total Laps</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">Kyle Larson</td>
+<td class="gt_row gt_right">10</td>
+<td class="gt_row gt_right">2581</td>
+<td class="gt_row gt_right">28.7</td>
+<td class="gt_row gt_right">9000</td></tr>
+    <tr><td class="gt_row gt_left gt_striped" style="background-color: #A020F0; color: #FFA500;">Denny Hamlin</td>
+<td class="gt_row gt_right gt_striped" style="background-color: #A020F0; color: #FFA500;">2</td>
+<td class="gt_row gt_right gt_striped" style="background-color: #A020F0; color: #FFA500;">1502</td>
+<td class="gt_row gt_right gt_striped" style="background-color: #A020F0; color: #FFA500;">16.3</td>
+<td class="gt_row gt_right gt_striped" style="background-color: #A020F0; color: #FFA500;">9196</td></tr>
+    <tr><td class="gt_row gt_left">Chase Elliott</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_right">952</td>
+<td class="gt_row gt_right">10.5</td>
+<td class="gt_row gt_right">9050</td></tr>
+    <tr><td class="gt_row gt_left gt_striped" style="background-color: #000000; color: #FFA500;">Martin Truex Jr.</td>
+<td class="gt_row gt_right gt_striped" style="background-color: #000000; color: #FFA500;">4</td>
+<td class="gt_row gt_right gt_striped" style="background-color: #000000; color: #FFA500;">865</td>
+<td class="gt_row gt_right gt_striped" style="background-color: #000000; color: #FFA500;">9.5</td>
+<td class="gt_row gt_right gt_striped" style="background-color: #000000; color: #FFA500;">9134</td></tr>
+    <tr><td class="gt_row gt_left">Joey Logano</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">453</td>
+<td class="gt_row gt_right">5.0</td>
+<td class="gt_row gt_right">8995</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">William Byron</td>
+<td class="gt_row gt_right gt_striped">1</td>
+<td class="gt_row gt_right gt_striped">425</td>
+<td class="gt_row gt_right gt_striped">4.7</td>
+<td class="gt_row gt_right gt_striped">8962</td></tr>
+    <tr><td class="gt_row gt_left">Ryan Blaney</td>
+<td class="gt_row gt_right">3</td>
+<td class="gt_row gt_right">423</td>
+<td class="gt_row gt_right">4.9</td>
+<td class="gt_row gt_right">8721</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">Kyle Busch</td>
+<td class="gt_row gt_right gt_striped">2</td>
+<td class="gt_row gt_right gt_striped">334</td>
+<td class="gt_row gt_right gt_striped">3.9</td>
+<td class="gt_row gt_right gt_striped">8647</td></tr>
+    <tr><td class="gt_row gt_left">Brad Keselowski</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">331</td>
+<td class="gt_row gt_right">3.7</td>
+<td class="gt_row gt_right">9062</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">Kevin Harvick</td>
+<td class="gt_row gt_right gt_striped">0</td>
+<td class="gt_row gt_right gt_striped">217</td>
+<td class="gt_row gt_right gt_striped">2.4</td>
+<td class="gt_row gt_right gt_striped">9150</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5"><strong>By:</strong> Sam Knoll  |  <strong>Source:</strong> <a href="https://www.nascar.com/stats/2021/1/box-score">NASCAR.com</a></td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+<p>Now racing isn’t all about leading laps as you can see with Hamlin only winning two races after leading the second amount of laps. Racing is all about where you are in the field of cars. Many drivers talk about how the racing at the back of the field is just as hard has it is at the front. It is also more risky to be in the back of the field as well. The cars back there are willing to do whatever to get to the front whereas the cars in the front of the field are there trying to stay there and they are more passive than anything.</p>
+<p>So it is pretty simple with that thinking if you are in the middle of the pack at the middle of the race you are more likely to get wrecked than if you are in the front of the pack.</p>
+<p>Lets take a look again at Denny Hamlin who once again shows us that he should have won more races last season. Hamlin was second in average mid race position compared to the rest of the drivers. While the series champion Kyle Larson was 4th almost two whole positions off of what Hamlin’s was. I think we are starting to get the picture here Hamlin really should have been the series champion.</p>
+<p>Another driver to look at is William Byron as at the middle of the race his average position was 8.9 and he just like Hamlin has not a lot of wins to show for it as well only winning one race last season. The problem for Byron was finishing the race as his average finish was 13.7 which is almost 5 off of his mid race average.</p>
+<p><img src="http://sknoll3.github.io/2022/03/24/leading-laps-leads-to-wins/index_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+Now you might be wondering to did Hamlin just like Byron have a worse finishing postion and that solves the question on why he didn’t win more races. You would be wrong with that thought as Hamlin actally had the best finishing position out of all drivers as well. With his 8.5 finishing postion he is almost a whole position ahead of Kyle Larson who was at 9.1.</p>
+<p>Besides Hamlin, Kevin Harvick was in the same boat as well as he had an average finish of 10.9 but during the season had ZERO wins. For Harvick the biggest issue though is the fact that he only lead a total of 217 laps all seaosn.</p>
+<p><img src="http://sknoll3.github.io/2022/03/24/leading-laps-leads-to-wins/index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>In the end Denny Hamlin’s 2021 season will be looked as one that had so much potential with the way he raced. In every sense of the word Hamlin really should have the trophy on the mantle. He did everything you needed to to win races. He lead laps, was in the front of the pack at the middle of the race and finished there as well. Hopefully his 2022 season will see some better successes than last season did.</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+
