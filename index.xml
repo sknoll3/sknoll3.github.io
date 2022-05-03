@@ -13,7 +13,7 @@
       <pubDate>Tue, 03 May 2022 00:00:00 +0000</pubDate>
       
       <guid>http://sknoll3.github.io/2022/05/03/are-steals-going-away-in-baseball/</guid>
-      <description></description>
+      <description>library(tidyverse) ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ── ## ✓ ggplot2 3.3.5 ✓ purrr 0.3.4 ## ✓ tibble 3.1.6 ✓ dplyr 1.0.8 ## ✓ tidyr 1.1.4 ✓ stringr 1.4.0 ## ✓ readr 2.1.1 ✓ forcats 0.5.1 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ── ## x dplyr::filter() masks stats::filter() ## x dplyr::lag() masks stats::lag() library(gt) tsdata &amp;lt;- read_csv(&amp;quot;data/baseball2021data.csv&amp;quot;) ## Rows: 32 Columns: 29 ## ── Column specification ──────────────────────────────────────────────────────── ## Delimiter: &amp;quot;,&amp;quot; ## chr (1): Tm ## dbl (28): #Bat, BatAge, R/G, G, PA, AB, R, H, 2B, 3B, HR, RBI, SB, CS, BB, S.</description>
     </item>
     
     <item>
