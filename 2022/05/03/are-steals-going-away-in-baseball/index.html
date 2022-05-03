@@ -62,7 +62,7 @@
 
   <article class="article">
     
-    <span class="article-duration">8 min read</span>
+    <span class="article-duration">10 min read</span>
     
 
     <h1 class="article-title">Are steals going away in baseball?</h1>
@@ -75,7 +75,10 @@
       
 
 
-<pre class="r"><code>library(tidyverse)</code></pre>
+<p>In baseball times are changing.</p>
+<p>If you looked at baseball just 10 years ago it would look drastically different than it is now. Pitch clocks have been implemented, robo umpires are being used, there is a limit on the number of mound visits you have, teams are shifting on every play. I could go on but that would be a blog with in itself. One of those things that is changing from year to year is the way steals are happenning. Steals in baseball used to be a way to advance the runner without getting an out and put them into scoring position right away. Now teams are just looking for guys to get on base stay there and their cleanup hitters to make a move by hitting a homer or get an extra base hit.</p>
+<p>It never used to be like that, steals were a huge part of the game in the 60’s and 70’s. Runners would fool pitchers and get them to balk or throw it over the first basemans head just out of the thought of steal second base. It was all to get in the pitchers head now it is how long can I take in the box and mess up the pitchers timing.</p>
+<p>This can be see in the recent 2021 season. In 2021 out of the top base stealers in the league only two made the playoffs and most of the teams were at the lowest end of the league. Plus there were only 5 teams that stole over 100 bases in the season where just a few short years earlier there could have been double that number.</p>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
 ## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
@@ -84,8 +87,14 @@
 <pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(gt)</code></pre>
-<pre class="r"><code>tsdata &lt;- read_csv(&quot;data/baseball2021data.csv&quot;)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;scales&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor</code></pre>
 <pre><code>## Rows: 32 Columns: 29
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -93,9 +102,8 @@
 ## dbl (28): #Bat, BatAge, R/G, G, PA, AB, R, H, 2B, 3B, HR, RBI, SB, CS, BB, S...
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>totaldata &lt;- read_csv(&quot;data/baseballtotalyeardata.csv&quot;)</code></pre>
-<pre><code>## Rows: 152 Columns: 30
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## Rows: 152 Columns: 30
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr  (1): RBI
@@ -103,7 +111,6 @@
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>head(totaldata)</code></pre>
 <pre><code>## # A tibble: 6 × 30
 ##    Year   Tms `#Bat` BatAge `R/G`     G     PA     AB     R     H  `1B`  `2B`
 ##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -116,73 +123,12 @@
 ## # … with 18 more variables: `3B` &lt;dbl&gt;, HR &lt;dbl&gt;, RBI &lt;chr&gt;, SB &lt;dbl&gt;,
 ## #   CS &lt;dbl&gt;, BB &lt;dbl&gt;, SO &lt;dbl&gt;, BA &lt;dbl&gt;, OBP &lt;dbl&gt;, SLG &lt;dbl&gt;, OPS &lt;dbl&gt;,
 ## #   TB &lt;dbl&gt;, GDP &lt;dbl&gt;, HBP &lt;dbl&gt;, SH &lt;dbl&gt;, SF &lt;dbl&gt;, IBB &lt;dbl&gt;, BIP &lt;dbl&gt;</code></pre>
-<pre class="r"><code>avgstls &lt;- tsdata %&gt;%
-  mutate(AVGSTLS = (SB/G)) </code></pre>
-<pre class="r"><code>steals &lt;- avgstls %&gt;%
-  select(Tm, G, SB, CS, AVGSTLS)</code></pre>
-<pre class="r"><code>topsteals &lt;- steals %&gt;%
-  arrange(desc(AVGSTLS)) %&gt;%
-  top_n(10, AVGSTLS)</code></pre>
-<pre class="r"><code>topsteals %&gt;%
-  gt() %&gt;%
-    fmt_number(
-    columns = AVGSTLS,
-    decimals = 2,
-    use_seps = FALSE
-  ) %&gt;%
-  cols_label(
-    Tm = &quot;Team&quot;,
-    G = &quot;Games&quot;,
-    SB = &quot;Stolen Bases&quot;,
-    CS = &quot;Caught Stealing&quot;,
-    AVGSTLS = &quot;AVG Stolen Bases&quot;
-  ) %&gt;%
-  tab_header(
-    title = &quot;The Top Base Stealers Didn&#39;t Make the Playoffs&quot;,
-    subtitle = &quot;Out of the top 10 teams only two were able to make the playoffs.&quot;
-  ) %&gt;%
-  tab_style(
-    style = cell_text(color = &quot;black&quot;, weight = &quot;bold&quot;, align = &quot;left&quot;),
-    locations = cells_title(&quot;title&quot;)
-  ) %&gt;%
-  tab_style(
-    style = cell_text(color = &quot;black&quot;, align = &quot;left&quot;),
-    locations = cells_title(&quot;subtitle&quot;)
-  ) %&gt;%
-  tab_source_note(
-    source_note = md(&quot;**By:** Sam Knoll  |  **Source:** [Baseball-Reference](https://www.baseball-reference.com/leagues/majors/2021.shtml)&quot;)
-  ) %&gt;%
-  tab_style(
-     locations = cells_column_labels(columns = everything()),
-     style = list(
-       cell_borders(sides = &quot;bottom&quot;, weight = px(3)),
-       cell_text(weight = &quot;bold&quot;, size=12)
-     )
-   ) %&gt;%
-  opt_row_striping() %&gt;% 
-  opt_table_lines(&quot;none&quot;) %&gt;%
-  tab_style(
-    style = list(
-      cell_fill(color = &quot;red&quot;),
-      cell_text(color = &quot;white&quot;)
-      ),
-    locations = cells_body(
-      rows = Tm == &quot;St. Louis Cardinals&quot;)
-  ) %&gt;%
-  tab_style(
-    style = list(
-      cell_fill(color = &quot;blue&quot;),
-      cell_text(color = &quot;white&quot;)
-      ),
-    locations = cells_body(
-      rows = Tm == &quot;Tampa Bay Rays&quot;)
-  )</code></pre>
-<div id="kznnjltvjk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="uobkctqbqa" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#kznnjltvjk .gt_table {
+#uobkctqbqa .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -207,7 +153,7 @@
   border-left-color: #D3D3D3;
 }
 
-#kznnjltvjk .gt_heading {
+#uobkctqbqa .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -219,7 +165,7 @@
   border-right-color: #D3D3D3;
 }
 
-#kznnjltvjk .gt_title {
+#uobkctqbqa .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -231,7 +177,7 @@
   border-bottom-width: 0;
 }
 
-#kznnjltvjk .gt_subtitle {
+#uobkctqbqa .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -243,13 +189,13 @@
   border-top-width: 0;
 }
 
-#kznnjltvjk .gt_bottom_border {
+#uobkctqbqa .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kznnjltvjk .gt_col_headings {
+#uobkctqbqa .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -264,7 +210,7 @@
   border-right-color: #D3D3D3;
 }
 
-#kznnjltvjk .gt_col_heading {
+#uobkctqbqa .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -284,7 +230,7 @@
   overflow-x: hidden;
 }
 
-#kznnjltvjk .gt_column_spanner_outer {
+#uobkctqbqa .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -296,15 +242,15 @@
   padding-right: 4px;
 }
 
-#kznnjltvjk .gt_column_spanner_outer:first-child {
+#uobkctqbqa .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kznnjltvjk .gt_column_spanner_outer:last-child {
+#uobkctqbqa .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kznnjltvjk .gt_column_spanner {
+#uobkctqbqa .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -316,7 +262,7 @@
   width: 100%;
 }
 
-#kznnjltvjk .gt_group_heading {
+#uobkctqbqa .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -341,7 +287,7 @@
   vertical-align: middle;
 }
 
-#kznnjltvjk .gt_empty_group_heading {
+#uobkctqbqa .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -356,15 +302,15 @@
   vertical-align: middle;
 }
 
-#kznnjltvjk .gt_from_md > :first-child {
+#uobkctqbqa .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kznnjltvjk .gt_from_md > :last-child {
+#uobkctqbqa .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kznnjltvjk .gt_row {
+#uobkctqbqa .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -383,7 +329,7 @@
   overflow-x: hidden;
 }
 
-#kznnjltvjk .gt_stub {
+#uobkctqbqa .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -396,7 +342,7 @@
   padding-right: 5px;
 }
 
-#kznnjltvjk .gt_stub_row_group {
+#uobkctqbqa .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -410,11 +356,11 @@
   vertical-align: top;
 }
 
-#kznnjltvjk .gt_row_group_first td {
+#uobkctqbqa .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kznnjltvjk .gt_summary_row {
+#uobkctqbqa .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -424,16 +370,16 @@
   padding-right: 5px;
 }
 
-#kznnjltvjk .gt_first_summary_row {
+#uobkctqbqa .gt_first_summary_row {
   border-top-style: none;
   border-top-color: #D3D3D3;
 }
 
-#kznnjltvjk .gt_first_summary_row.thick {
+#uobkctqbqa .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kznnjltvjk .gt_last_summary_row {
+#uobkctqbqa .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -443,7 +389,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#kznnjltvjk .gt_grand_summary_row {
+#uobkctqbqa .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -453,7 +399,7 @@
   padding-right: 5px;
 }
 
-#kznnjltvjk .gt_first_grand_summary_row {
+#uobkctqbqa .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -463,11 +409,11 @@
   border-top-color: #D3D3D3;
 }
 
-#kznnjltvjk .gt_striped {
+#uobkctqbqa .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kznnjltvjk .gt_table_body {
+#uobkctqbqa .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -476,7 +422,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#kznnjltvjk .gt_footnotes {
+#uobkctqbqa .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -490,7 +436,7 @@
   border-right-color: #D3D3D3;
 }
 
-#kznnjltvjk .gt_footnote {
+#uobkctqbqa .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -499,7 +445,7 @@
   padding-right: 5px;
 }
 
-#kznnjltvjk .gt_sourcenotes {
+#uobkctqbqa .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -513,7 +459,7 @@
   border-right-color: #D3D3D3;
 }
 
-#kznnjltvjk .gt_sourcenote {
+#uobkctqbqa .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -521,60 +467,60 @@
   padding-right: 5px;
 }
 
-#kznnjltvjk .gt_left {
+#uobkctqbqa .gt_left {
   text-align: left;
 }
 
-#kznnjltvjk .gt_center {
+#uobkctqbqa .gt_center {
   text-align: center;
 }
 
-#kznnjltvjk .gt_right {
+#uobkctqbqa .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kznnjltvjk .gt_font_normal {
+#uobkctqbqa .gt_font_normal {
   font-weight: normal;
 }
 
-#kznnjltvjk .gt_font_bold {
+#uobkctqbqa .gt_font_bold {
   font-weight: bold;
 }
 
-#kznnjltvjk .gt_font_italic {
+#uobkctqbqa .gt_font_italic {
   font-style: italic;
 }
 
-#kznnjltvjk .gt_super {
+#uobkctqbqa .gt_super {
   font-size: 65%;
 }
 
-#kznnjltvjk .gt_footnote_marks {
+#uobkctqbqa .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#kznnjltvjk .gt_asterisk {
+#uobkctqbqa .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kznnjltvjk .gt_slash_mark {
+#uobkctqbqa .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#kznnjltvjk .gt_fraction_numerator {
+#uobkctqbqa .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#kznnjltvjk .gt_fraction_denominator {
+#uobkctqbqa .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -658,45 +604,24 @@
   
 </table>
 </div>
-<pre class="r"><code>ftotaldata &lt;- totaldata %&gt;%
-  filter(Year &gt; 1999)</code></pre>
-<pre class="r"><code>avgstls2 &lt;- ftotaldata %&gt;%
-  mutate(AVGSTLS = (SB/G)) %&gt;%
-  mutate(AVGHR = (HR/G))</code></pre>
-<pre class="r"><code>ggplot() + 
-  geom_point(data=avgstls2, aes(x=Year, y=AVGSTLS)) +
-  geom_smooth(data=avgstls2, aes(x=Year, y=AVGSTLS), method=&quot;lm&quot;) +
-  theme_minimal() +
-  labs(x= &quot;Year&quot;,
-       y= &quot;Average Steals&quot;,
-       title= &quot;Could Steals Be a Thing of the Past in Baseball&quot;,
-       subtitle = &quot;Since 2000 steals in baseball are starting to go down.&quot;,
-       caption = &quot;Baseball-Reference | By Sam Knoll&quot;) +
-  theme(
-    plot.title = element_text(size = 16, face = &quot;bold&quot;),
-    axis.title = element_text(size = 8), 
-    plot.subtitle = element_text(size=10), 
-    panel.grid.minor = element_blank()
-    )</code></pre>
+<p>2021 wasn’t the first year that this had happennd though this has been happen ing really since the turn of the calendar to 2000 when baseball was in the height of the steroid era. Since that time only one or two years have stolen bases when back to where they were instead they are showing and negative dip and are going down faster and faster each year.</p>
+<p>In the year of 2000 the average amount of stolen bases sat at 0.60 and now in the year 2021 that number as fallen all the way to 0.45 which is 15% less than just 20 years ago. Baseball has taken a revoultion to look at numbers and this has taken the stolen base away from baseball. It can be seen in the Moneyball movie staring Brad Pitt. Bill Beane the GM for the Oakland Athletics at the time made it pretty clear to his fastest guys that he didn’t care about stealing bases he just wanted them on base.</p>
+<p>Or as he put it</p>
+<p>“I don’t pay you to get on base and then get thrown out at second!”</p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="http://sknoll3.github.io/2022/05/03/are-steals-going-away-in-baseball/index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<pre class="r"><code>ggplot() + 
-  geom_point(data=avgstls2, aes(x=Year, y=AVGHR)) +
-  geom_smooth(data=avgstls2, aes(x=Year, y=AVGHR), method=&quot;lm&quot;) +
-  theme_minimal() +
-  labs(x= &quot;Year&quot;,
-       y= &quot;Average Home Runs&quot;,
-       title= &quot;Steals Are Down but Homers Are Up&quot;,
-       subtitle = &quot;Since 2000 homers in baseball have went up.&quot;,
-       caption = &quot;Baseball-Reference | By Sam Knoll&quot;) +
-  theme(
-    plot.title = element_text(size = 16, face = &quot;bold&quot;),
-    axis.title = element_text(size = 8), 
-    plot.subtitle = element_text(size=10), 
-    panel.grid.minor = element_blank()
-    )</code></pre>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="http://sknoll3.github.io/2022/05/03/are-steals-going-away-in-baseball/index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code>avghr &lt;- avgstls2 %&gt;%
+  select(Year, SB, HR, AVGSTLS, AVGHR) %&gt;%
+  arrange(desc(AVGHR)) %&gt;%
+  top_n(5, AVGHR)</code></pre>
+<p>So we know that stolen bases have went down but has the number in homers hit went up as well is a question that should be pretty easy to answer as we all know they have.</p>
+<p>Since 2015 there has been a dramatic spike in the amount of homers hit in total in the MLB while the number of average stolen bases is starting to strink more and more each year.</p>
+<p>In the year 2000 the number of average homers hit was right around the 1.17 mark for a season by now that number has shifted all the way up to 1.28 that is a big difference in just 20 years as well. Baseball is turning from how fast you are to how fast your bat speed is and what you lauch angle is and how hard you hit the baseball.</p>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_text_repel).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_vline).</code></pre>
+<p><img src="http://sknoll3.github.io/2022/05/03/are-steals-going-away-in-baseball/index_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+All in all baseball is changing and proabably for the good. People want to see homers and not just stolen bases but maybe I am a odd one because I love to see stolen bases and a suicide squeeze put on in the bottom of the ninth rather and a homer to deep left field. With that being said it is pretty easy to see that stolen bases are just another thing that is slowly is going to die out in baseball while home runs are going to become the future.</p>
 
     </div>
   </article>
